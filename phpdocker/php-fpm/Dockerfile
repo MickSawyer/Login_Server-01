@@ -10,4 +10,6 @@ RUN apt-get update \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 # Install Symfony
+#RUN composer config -g repo.packagist composer https://packagist.org
 #RUN composer create-project symfony/website-skeleton public
+#RUN bin/console doctrine:schema:create

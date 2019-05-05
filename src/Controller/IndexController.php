@@ -11,14 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserController extends AbstractController
+class IndexController extends AbstractController
 {
     
-    /**
-     * @Route("/") 
-     **/
     public function ShowIndex()
     {
-        return new Response('<h1> This Should Not Be Accessed! </h1>');
+        return $this->json(['STATUS' => '403']);
     }
+
 }

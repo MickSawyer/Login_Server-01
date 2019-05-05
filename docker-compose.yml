@@ -20,10 +20,10 @@ services:
         - MYSQL_ROOT_PASSWORD=R00tT00r
         - MYSQL_DATABASE=users
         - MYSQL_USER=admin
-        - MYSQL_PASSWORD=@dm8n
+        - MYSQL_PASSWORD=admin
       ports:
         - "8002:3306"
-
+        
     webserver:
       image: nginx:alpine
       container_name: login-server-webserver
@@ -41,4 +41,4 @@ services:
       volumes:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
-
+      
