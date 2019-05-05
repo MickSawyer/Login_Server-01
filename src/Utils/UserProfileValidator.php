@@ -4,7 +4,7 @@ namespace App\Utils;
 
 class UserProfileValidator {
 
-    public function validateUserProfile $var = null)
+    public function validateUserProfile ($var = null)
     {
         # code...
     }
