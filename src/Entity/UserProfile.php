@@ -36,6 +36,21 @@ class UserProfile
      */
     private $Email;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $FullName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Status;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreationDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +100,42 @@ class UserProfile
     public function setEmail(string $Email): self
     {
         $this->Email = $Email;
+
+        return $this;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->FullName;
+    }
+
+    public function setFullName(string $FullName): self
+    {
+        $this->FullName = $FullName;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(?string $Status): self
+    {
+        $this->Status = $Status;
+
+        return $this;
+    }
+
+    public function getCreationDate(): ?\DateTimeInterface
+    {
+        return $this->CreationDate;
+    }
+
+    public function setCreationDate(\DateTimeInterface $CreationDate): self
+    {
+        $this->CreationDate = $CreationDate;
 
         return $this;
     }

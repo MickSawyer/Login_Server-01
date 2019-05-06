@@ -48,14 +48,23 @@ class AddUserCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        
-        $username = $input->getArgument('username');
-        $fullName = $input->getArgument('full-name');
-        $user_age = $input->getArgument('age');
-        $plainPassword = $input->getArgument('password');
-        $email = $input->getArgument('email');
-        
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $usr = array();
+
+        $usr['username'] = $input->getArgument('username');
+        $usr['full_name'] = $input->getArgument('full-name');
+        $usr['age'] = $input->getArgument('age');
+        $usr['password'] = $input->getArgument('password');
+        $usr['email'] = $input->getArgument('email');
+        $usr['creationDate'] = 'Now';
+
+        $val = $this->validator->validateUserProfile($usr);
+        if ($val === 0){
+            $io->success("User is Validated");
+        } else {
+            $io->success("$val error");
+        }
+
+
     }
 }

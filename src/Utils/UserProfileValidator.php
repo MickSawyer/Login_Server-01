@@ -4,55 +4,69 @@ namespace App\Utils;
 
 class UserProfileValidator {
 
+
+
     public function validateUserProfile ($var = null)
     {
-        # code...
+        validateUsername($var['username']);
+        validateUsername($var['password']);
+        validateUsername($var['email']);
+        validateUsername($var['full_name']);
+
+        if (sizeof( $err) === 0){
+            return true;
+        } else {
+            return $err;
+        }
     }
     
 
-    public function validateUsername(?string $username): integer
+    private function validateUsername(?string $username): integer
     {
         if (empty($username)) {
-            return 11;
+            $err['11'] = 'Empty username';
         }
 
         if (1 !== preg_match('/^[a-z_]+$/', $username)) {
-            return 12);
+            $err['12'] = 'Username Should not contain special characters';
         }
 
         return 0;
     }
 
-    public function validatePassword(?string $plainPassword): string
+    private function validatePassword(?string $plainPassword): string
     {
         if (empty($plainPassword)) {
-            return 21;
+            $err['21'] = "Empty Password";
         }
 
-        if (count_chars($plainPassword) < 8) {
-            return 22;
+        if (count_chars($plainPassword) < 8) { 
+            $err['22'] = "Password should be more than 8 chars long";
         }
 
         return 0;
     }
 
-    public function validateEmail(?string $email): string
+    private function validateEmail(?string $email): string
     {
-        if (empty($email)) {
-            return 31;
-        }
+        if (empty($email)) 
+            $err["31"] = "Empty Email";
+        
 
-        if (false === mb_strpos($email, '@')) {
-            return 32;
-        }
+        if (false === mb_strpos($email, '@')) 
+            $err["32"] = "Not Valid Email";
+        
 
+        if (false === mb_strpos(substr(trim($email) , -4), '.' )) 
+            $err["32"] = "Not Valid Email";
+        
         return 0;
     }
 
-    public function validateFullName(?string $fullName): string
+    private function validateFullName(?string $fullName): string
     {
         if (empty($fullName)) {
-            return 41;
+            $err["41"] = "Empty Full Name";
         }
 
         return 0;

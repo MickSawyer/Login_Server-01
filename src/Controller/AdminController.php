@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Service\UserService;
+use App\Utils\UserProfileValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,18 +23,12 @@ class AdminController extends AbstractController
         return new Response('Hello World');
     }
 
-    /**
+    /** Add User
      * @Route("/users", methods={"GET", "POST"}, name="admin")
-    **/
-    public function users(Request $request)
-    {
-        if (strpos($request->headers->get('Content-Type'), 'application/json') === 0 ) {
-            $data = json_decode($request->getContent(), true);
-            $msg = $data['msg'];
-            return new Response("JSON is Here!: msg = $msg");
-        } else {
-            return $this->json(['STATUS' => '403', 'MSG' => 'JSON REQUEST IS REQUIRED']);
-        }
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse|Response
+     */
+    public function createUser(Request $request, UserService $userService ){
+        return new Response("Hello Guys");
     }
-
 }
